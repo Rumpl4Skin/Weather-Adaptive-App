@@ -19,7 +19,6 @@ android {
             useSupportLibrary = true
         }
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -50,6 +49,7 @@ android {
 }
 
 dependencies {
+    //implementation ("com.github.jakhongirmadaminov:glassmorphic-composables:0.0.4")
     implementation ("com.google.accompanist:accompanist-swiperefresh:0.33.2-alpha")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")

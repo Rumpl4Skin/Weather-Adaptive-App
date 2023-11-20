@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -68,10 +69,10 @@ class MainActivity : ComponentActivity() {
         ) {
             BackdropScaffold(
                 scaffoldState = scaffoldState,
-                frontLayerBackgroundColor = Color.Transparent,
+                frontLayerBackgroundColor = Color.Transparent.copy(),
                 frontLayerScrimColor = Color.Transparent,
                 backLayerBackgroundColor = Color.Transparent,
-                /*frontLayerElevation = if (scaffoldState.isConcealed) 8.dp else 0.dp,*/
+                frontLayerElevation =  (-3).dp,
                 appBar = { /*AppBar(homeViewModel.currentCity.value)*/ },
                 backLayerContent = {
                     AppBar(homeViewModel.currentCity.value)
@@ -82,7 +83,9 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                                    },
-                frontLayerContent = { Home(homeViewModel.weather.value) }
+                frontLayerContent = { Home(homeViewModel.weather.value) },
+                persistentAppBar = true,
+
             )
 
 

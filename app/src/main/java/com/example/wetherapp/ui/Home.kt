@@ -20,24 +20,28 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.wetherapp.R
+import com.example.wetherapp.ui.Components.ExpandableSection
 import com.example.wetherapp.ui.Model.Weather
 
 @Composable
 fun Home(weather: Weather) {
-    LazyColumn(modifier = Modifier.padding(top = 20.dp)
+    LazyColumn(modifier = Modifier.padding(top = 16.dp)
         .background(Color.Transparent))
     {
         item {
             Column(
                 modifier = Modifier.padding(10.dp)
             ) {
-                weatherItem(weather.forecast?.forecastday?.let {
+                DetailsView(instructions = weather.forecast?.forecastday?.let {
                     if (it.size > 0) {
                         it[0].hour[0].feelslikeC.toString()
                     } else "-"
@@ -108,6 +112,17 @@ fun ListDivider() {
         modifier = Modifier.padding(horizontal = 14.dp),
         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
     )
+}
+
+@Composable
+private fun DetailsView(modifier: Modifier = Modifier, instructions: String) {
+    ExpandableSection(modifier = modifier, title = "Details") {
+        Text(
+            modifier = Modifier.padding(8.dp),
+            text = instructions,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
+    }
 }
 
 @Composable

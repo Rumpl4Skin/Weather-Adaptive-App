@@ -1,3 +1,5 @@
+import java.net.URL
+
 pluginManagement {
     repositories {
         google()
@@ -10,9 +12,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
     }
 }
 
-rootProject.name = "Wether App"
+rootProject.name = "Weather App"
 include(":app")
  
