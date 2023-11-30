@@ -16,8 +16,8 @@ class NetworkWeatherRepository(
     ): Weather = weatherService.getForecast(city, days).apply {
         Weather(
             location = this.location,
-            /*current = this.current,
-            forecast = this.forecast*/
+            current = this.current,
+            /*forecast = this.forecast*/
         )
     }
 

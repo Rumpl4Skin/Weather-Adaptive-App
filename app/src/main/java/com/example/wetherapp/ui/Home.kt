@@ -13,47 +13,39 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.wetherapp.R
 import com.example.wetherapp.ui.Components.ExpandableSection
 import com.example.wetherapp.ui.Model.Weather
+import com.example.wetherapp.ui.Model.WeatherFact
 
 @Composable
-fun Home(weather: Weather) {
-    LazyColumn(modifier = Modifier.padding(top = 16.dp)
-        .background(Color.Transparent))
+fun Home(weather: Weather, facts: List<WeatherFact>) {
+    LazyColumn(
+        modifier = Modifier.padding(top = 16.dp)
+            .background(Color.Transparent)
+    )
     {
         item {
             Column(
                 modifier = Modifier.padding(10.dp)
             ) {
-                DetailsView(instructions = weather.forecast?.forecastday?.let {
-                    if (it.size > 0) {
-                        it[0].hour[0].feelslikeC.toString()
-                    } else "-"
-                } ?: "-")
+                DetailsView(facts = facts)
             }
-            ListDivider()
         }
     }
 }
 
 @Composable
-fun weatherHeader(currentTempC: Int = 23, currentConditions: String = "Облачно") {
+fun WeatherHeader(currentTempC: Int = 23, currentConditions: String = "Облачно") {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth()
@@ -71,7 +63,8 @@ fun weatherHeader(currentTempC: Int = 23, currentConditions: String = "Обла�
                             color = Color.DarkGray,
                             offset = Offset(4f, 4f),
                             blurRadius = 8f
-                        )),
+                        )
+                    ),
                     color = Color.White
                 )
                 androidx.compose.material.Text(
@@ -81,7 +74,8 @@ fun weatherHeader(currentTempC: Int = 23, currentConditions: String = "Обла�
                             color = Color.DarkGray,
                             offset = Offset(4f, 4f),
                             blurRadius = 8f
-                        )),
+                        )
+                    ),
                     color = Color.White
                 )
             }
@@ -94,7 +88,8 @@ fun weatherHeader(currentTempC: Int = 23, currentConditions: String = "Обла�
                             color = Color.DarkGray,
                             offset = Offset(4f, 4f),
                             blurRadius = 8f
-                        )),
+                        )
+                    ),
                     color = Color.White,
                 )
             }
@@ -115,14 +110,36 @@ fun ListDivider() {
 }
 
 @Composable
-private fun DetailsView(modifier: Modifier = Modifier, instructions: String) {
+private fun DetailsView(modifier: Modifier = Modifier, facts: List<WeatherFact>) {
     ExpandableSection(modifier = modifier, title = "Details") {
-        Text(
-            modifier = Modifier.padding(8.dp),
-            text = instructions,
-            color = MaterialTheme.colorScheme.onSecondaryContainer
-        )
-    }
+        Column {
+            val countInRow = 2
+            var mas = facts
+            repeat(mas.size / countInRow) {
+                mas.take(countInRow).let {
+                    Row {
+                        WeatherFact(fact = it[0], modifier=Modifier.weight(1f))
+                        Spacer(modifier = Modifier.padding(horizontal = 8.dp))
+                        WeatherFact(fact = it[1], modifier=Modifier.weight(1f))
+                    }
+                }
+                mas=mas.drop(countInRow)
+            }
+        }
+
+        /*repeat(facts.size) {
+            Row {
+                WeatherFact(fact = facts[i])
+                if (i <= facts.size - 3)
+                    WeatherFact(fact = facts[i + 1])
+            }
+            ListDivider()
+            i += countInRow
+        }
+    }*/
+
+
+}
 }
 
 @Composable
@@ -133,5 +150,5 @@ fun weatherItem(weather: String) {
 @Preview(showBackground = true)
 @Composable
 fun weatherHeaderPreview() {
-    weatherHeader(2, "Облачно")
+    WeatherHeader(2, "Облачно")
 }

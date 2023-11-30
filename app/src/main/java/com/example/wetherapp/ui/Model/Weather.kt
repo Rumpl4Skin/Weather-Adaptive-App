@@ -10,3 +10,4 @@ data class Weather(
     @SerializedName("current" ) var current  : Current  = Current(),
     @SerializedName("forecast") var forecast : Forecast = Forecast()
 )
+

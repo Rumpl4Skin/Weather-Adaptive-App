@@ -22,7 +22,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -61,9 +60,9 @@ fun ExpandableSection(
             .clickable { isExpanded = !isExpanded }
             .background(
                 color = MaterialTheme.colorScheme.secondaryContainer.copy(
-                    alpha = 0.6f
+                    alpha = 1f
                 ),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(12.dp)
             )
             .fillMaxWidth()
     ) {

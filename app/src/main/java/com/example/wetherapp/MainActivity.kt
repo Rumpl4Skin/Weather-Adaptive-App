@@ -18,15 +18,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.wetherapp.ui.Components.AppBar
 import com.example.wetherapp.ui.Home
 import com.example.wetherapp.ui.HomeViewModel
+import com.example.wetherapp.ui.WeatherHeader
 import com.example.wetherapp.ui.theme.WetherAppTheme
-import com.example.wetherapp.ui.weatherHeader
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
@@ -76,14 +75,9 @@ class MainActivity : ComponentActivity() {
                 appBar = { /*AppBar(homeViewModel.currentCity.value)*/ },
                 backLayerContent = {
                     AppBar(homeViewModel.currentCity.value)
-
-                    homeViewModel.weather.value.current?.condition?.text?.let {
-                        homeViewModel.weather.value.current?.tempC?.let { it1 ->
-                            weatherHeader(it1, it)
-                        }
-                    }
+                    WeatherHeader(homeViewModel.weather.value.current.tempC, homeViewModel.weather.value.current.condition.text)
                                    },
-                frontLayerContent = { Home(homeViewModel.weather.value) },
+                frontLayerContent = { Home(homeViewModel.weather.value,homeViewModel.weatherFacts) },
                 persistentAppBar = true,
 
             )

@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Condition (
 
-  @SerializedName("text" ) var text : String? = null,
-  @SerializedName("icon" ) var icon : String? = null,
-  @SerializedName("code" ) var code : Int?    = null
+  @SerializedName("text" ) var text : String = "",
+  @SerializedName("icon" ) var icon : String = "",
+  @SerializedName("code" ) var code : Int   = 0
 
 )
