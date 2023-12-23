@@ -60,7 +60,7 @@ fun ExpandableSection(
             .clickable { isExpanded = !isExpanded }
             .background(
                 color = MaterialTheme.colorScheme.secondaryContainer.copy(
-                    alpha = 1f
+                    alpha = .35f
                 ),
                 shape = RoundedCornerShape(12.dp)
             )

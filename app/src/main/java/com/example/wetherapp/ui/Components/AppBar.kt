@@ -12,21 +12,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AppBar(city: String) {
+fun AppBar(city: String,modifier: Modifier=Modifier) {
     Box(
-        modifier = Modifier.padding(6.dp)
+        modifier = modifier.padding(6.dp)
             .fillMaxWidth()
             .background(Color.Transparent)
     ) {
         Column(verticalArrangement = Arrangement.Center,
-            modifier = Modifier.matchParentSize()) {
+            modifier = modifier.matchParentSize()) {
             Text(
                 text = "+",
                 style = MaterialTheme.typography.h5,
@@ -35,7 +34,7 @@ fun AppBar(city: String) {
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.align(Alignment.Center)
+            modifier = modifier.align(Alignment.Center)
         ) {
             Text(
                 text = city,

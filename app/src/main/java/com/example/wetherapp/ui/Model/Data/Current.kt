@@ -7,7 +7,7 @@ data class Current (
 
   @SerializedName("last_updated_epoch" ) var lastUpdatedEpoch : Int       = 0,
   @SerializedName("last_updated"       ) var lastUpdated      : String    = "",
-  @SerializedName("temp_c"             ) var tempC            : Int      = 0,
+  @SerializedName("temp_c"             ) var tempC            : Double      = 0.0,
   @SerializedName("temp_f"             ) var tempF            : Double    = 0.0,
   @SerializedName("is_day"             ) var isDay            : Int      = 0,
   @SerializedName("condition"          ) var condition        : Condition = Condition(),

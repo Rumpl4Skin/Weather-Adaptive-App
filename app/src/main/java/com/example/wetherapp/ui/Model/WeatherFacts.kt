@@ -16,9 +16,11 @@ import androidx.compose.material.icons.outlined.WbTwilight
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class WeatherFact(
+    val day: String="Today",
     val label: String="Tempeture",
     val value: String="9|-10",
     val icon: ImageVector=Icons.Outlined.DeviceThermostat,
+    val iconURL: String="//cdn.weatherapi.com/weather/64x64/night/116.png"
 )
 
 fun Weather.getFacts()= listOf(
